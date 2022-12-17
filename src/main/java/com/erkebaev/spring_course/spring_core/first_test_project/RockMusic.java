@@ -1,4 +1,4 @@
-package com.erkebaev.spring_course.ioc.first_test_project;
+package com.erkebaev.spring_course.spring_core.first_test_project;
 
 public class RockMusic implements Music {
     public String getSong() {
