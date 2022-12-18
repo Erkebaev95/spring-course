@@ -12,10 +12,16 @@ public class TestSpring {
         //MusicPlayer musicPlayer = new MusicPlayer(music);
 
         // использовали Di через web.xml
-        MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+        /*MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
         musicPlayer.playMusic();
         System.out.println(musicPlayer.getName());
-        System.out.println(musicPlayer.getVolume());
+        System.out.println(musicPlayer.getVolume());*/
+
+        // Init, destroy and factory methods
+        ClassicalMusic classicalMusic1 = context.getBean("musicBean", ClassicalMusic.class);
+        ClassicalMusic classicalMusic2 = context.getBean("musicBean", ClassicalMusic.class);
+        System.out.println(classicalMusic1.getSong());
+        System.out.println(classicalMusic2.getSong());
 
         context.close();
     }

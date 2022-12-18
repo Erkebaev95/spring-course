@@ -9,12 +9,17 @@
     <!-- DI через сеттер: импортируем данные с файла -->
     <context:property-placeholder location="classpath:musicPlayer.properties"/>
 
+    <!-- Мы используем init destroy factory methods -->
     <bean id="musicBean"
-          class="com.erkebaev.spring_course.spring_core.first_test_project.ClassicalMusic">
+          class="com.erkebaev.spring_course.spring_core.first_test_project.ClassicalMusic"
+          init-method="doMyInit"
+          destroy-method="doMyDestroy"
+          factory-method="getClassicalMusic">
+
     </bean>
 
     <!-- Самостоятельная работа: создаем лист из бинов -->
-    <bean id="musicBean1"
+    <!--<bean id="musicBean1"
           class="com.erkebaev.spring_course.spring_core.first_test_project.ClassicalMusic">
     </bean>
 
@@ -38,7 +43,7 @@
 
         <property name="name" value="${musicPlayer.name}"/>
         <property name="volume" value="${musicPlayer.volume}"/>
-    </bean>
+    </bean>-->
 
     <!-- DI через сеттер -->
     <!--<bean id="musicPlayer"
