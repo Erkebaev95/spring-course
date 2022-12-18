@@ -6,17 +6,21 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- DI через аннотации-->
+    <context:component-scan base-package="com.erkebaev.spring_course.spring_core.annotations" />
+
     <!-- DI через сеттер: импортируем данные с файла -->
-    <context:property-placeholder location="classpath:musicPlayer.properties"/>
+    <!--<context:property-placeholder location="classpath:musicPlayer.properties"/>-->
 
     <!-- Мы используем init destroy factory methods -->
-    <bean id="musicBean"
+    <!--<bean id="musicBean"
           class="com.erkebaev.spring_course.spring_core.first_test_project.ClassicalMusic"
           init-method="doMyInit"
           destroy-method="doMyDestroy"
           factory-method="getClassicalMusic">
 
-    </bean>
+    </bean>-->
 
     <!-- Самостоятельная работа: создаем лист из бинов -->
     <!--<bean id="musicBean1"
