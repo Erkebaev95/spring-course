@@ -1,28 +1,26 @@
 package com.erkebaev.spring_course.spring_core;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 
 @Component
 public class MusicPlayer {
-    //@Autowired// Внедрение зависимости через поле
-    //private Music music;
-    private ClassicalMusic classicalMusic;
-    private RockMusic rockMusic;
+    /*@Autowired// Внедрение зависимости через поле
+    @Qualifier("classicalMusic")// Указываем названия бина которого хотим вызвать
+    private Music music;*/
+    private Music music1;
+    private Music music2;
 
-    @Autowired// Внедрение зависимости через конструктор
-    public MusicPlayer(ClassicalMusic classicalMusic, RockMusic rockMusic) {
-        this.classicalMusic = classicalMusic;
-        this.rockMusic = rockMusic;
+    @Autowired
+    public MusicPlayer(@Qualifier("rockMusic") Music music1,
+                       @Qualifier("classicalMusic") Music music2) {
+        this.music1 = music1;
+        this.music2 = music2;
     }
 
-    /*@Autowired// Внедрение зависимости через сеттер
-    public void setMusic(Music music) {
-        this.music = music;
-    }*/
-
     public String playMusic() {
-        return "Playing: " + classicalMusic.getSong();
+        return "Playing: " + music1.getSong() + ", " + music2.getSong();
     }
 }
