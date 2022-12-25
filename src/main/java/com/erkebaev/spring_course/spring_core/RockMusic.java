@@ -1,4 +1,4 @@
-package com.erkebaev.spring_course.spring_core.annotations;
+package com.erkebaev.spring_course.spring_core;
 
 import org.springframework.stereotype.Component;
 

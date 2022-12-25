@@ -1,4 +1,4 @@
-package com.erkebaev.spring_course.spring_core.first_test_project;
+package com.erkebaev.spring_course.spring_core;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -8,7 +8,7 @@ public class TestSpring2 {
                 new ClassPathXmlApplicationContext("applicationContext.xml");
 
         MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
-        musicPlayer.getMusicList();
+
         context.close();
     }
 }
