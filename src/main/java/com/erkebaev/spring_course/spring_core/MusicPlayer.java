@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 
-@Component
+//@Component
 public class MusicPlayer {
     /*@Autowired// Внедрение зависимости через поле
     @Qualifier("classicalMusic")// Указываем названия бина которого хотим вызвать
@@ -37,7 +37,7 @@ public class MusicPlayer {
     private Music music1;
     private Music music2;
 
-    @Autowired
+    //@Autowired
     public MusicPlayer(@Qualifier("rockMusic") Music music1,
                        @Qualifier("classicalMusic") Music music2) {
         this.music1 = music1;

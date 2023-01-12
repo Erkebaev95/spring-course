@@ -1,11 +1,17 @@
 package com.erkebaev.spring_course.spring_core;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class TestSpring {
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context =
-                new ClassPathXmlApplicationContext("applicationContext.xml");
+        // Удаляем xml config
+        /*ClassPathXmlApplicationContext context =
+                new ClassPathXmlApplicationContext("applicationContext.xml");*/
+
+        // Добавляем annotation config
+        AnnotationConfigApplicationContext context =
+                new AnnotationConfigApplicationContext(SpringConfig.class);
 
         // В ручную внедряем зависимость
         //Music music = context.getBean("musicBean", Music.class);
