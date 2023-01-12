@@ -18,10 +18,21 @@ public class TestSpring {
         System.out.println(musicPlayer.getVolume());*/
 
         // Init, destroy and factory methods
-        ClassicalMusic classicalMusic1 = context.getBean("musicBean", ClassicalMusic.class);
+        /*ClassicalMusic classicalMusic1 = context.getBean("musicBean", ClassicalMusic.class);
         ClassicalMusic classicalMusic2 = context.getBean("musicBean", ClassicalMusic.class);
         System.out.println(classicalMusic1.getSong());
-        System.out.println(classicalMusic2.getSong());
+        System.out.println(classicalMusic2.getSong());*/
+
+        // Value
+        MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+        System.out.println(musicPlayer.getName());
+        System.out.println(musicPlayer.getVolume());
+
+        // Scope, PostConstruct, PreDestroy
+        ClassicalMusic classicalMusic1 = context.getBean("classicalMusic", ClassicalMusic.class);
+        //ClassicalMusic classicalMusic2 = context.getBean("classicalMusic", ClassicalMusic.class);
+        //System.out.println(classicalMusic1 == classicalMusic2);
+
 
         context.close();
     }
