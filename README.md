@@ -34,7 +34,27 @@ through the @PathVariable annotation and other features.
 - **Model**. The model contains application data. Usually includes POJO classes (Plain Old Java Objects) - plain old Java objects or, in other words, beans.
 - **View**. Used to visualize and display application data using a user interface. Responsible for how the model data will look in the user's browser.
 - **Controller**. The controller is needed to process user requests and call back-end services. It structures the request, creates an appropriate model for further display in the browser.
-- The Dispatcher Servlet is the heart of Spring Web MVC, a fully customizable front controller that coordinates all request processing actions:
+- **The Dispatcher Servlet** is the heart of Spring Web MVC, a fully customizable front controller that coordinates all request processing actions:
 
 ![img.png](img.png)
+
+### Spring MVC configuration applications using Java code.
+
+How to replace web.xml ?
+Starting with version 3 of the Spring Framework, you can
+use Java code instead of web.xml.
+To do this, you need to create a Java class in the project,
+which implements the interface
+**org.springframework.web.WebApplicationInitializer**.
+
+* Such a class is read automatically and works like **web.xml**.
+
+But we will use an abstract class for the configuration
+**AbstractAnnotationConfigDispatcherServletInitializer**.
+This class was introduced in Spring 3.2 and it
+implements the **WebApplicationInitializer interface**
+for us.
+
+![img_1.png](img_1.png)
+
 
