@@ -1,8 +1,5 @@
 package com.erkebaev.spring_course.spring_core;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 

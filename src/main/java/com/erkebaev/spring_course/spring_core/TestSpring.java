@@ -1,7 +1,7 @@
 package com.erkebaev.spring_course.spring_core;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+//import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+//import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class TestSpring {
     public static void main(String[] args) {
@@ -10,8 +10,7 @@ public class TestSpring {
                 new ClassPathXmlApplicationContext("applicationContext.xml");*/
 
         // Добавляем annotation config
-        AnnotationConfigApplicationContext context =
-                new AnnotationConfigApplicationContext(SpringConfig.class);
+        //AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
 
         // В ручную внедряем зависимость
         //Music music = context.getBean("musicBean", Music.class);
@@ -30,16 +29,16 @@ public class TestSpring {
         System.out.println(classicalMusic2.getSong());*/
 
         // Value
-        MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
-        System.out.println(musicPlayer.getName());
-        System.out.println(musicPlayer.getVolume());
+        //MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+        //System.out.println(musicPlayer.getName());
+        //System.out.println(musicPlayer.getVolume());
 
         // Scope, PostConstruct, PreDestroy
-        ClassicalMusic classicalMusic1 = context.getBean("classicalMusic", ClassicalMusic.class);
+        //ClassicalMusic classicalMusic1 = context.getBean("classicalMusic", ClassicalMusic.class);
         //ClassicalMusic classicalMusic2 = context.getBean("classicalMusic", ClassicalMusic.class);
         //System.out.println(classicalMusic1 == classicalMusic2);
 
 
-        context.close();
+        //context.close();
     }
 }
