@@ -23,3 +23,18 @@ This is typically achieved through dependency injection, where the external enti
 * **Dependency Injection (DI)** is a specific implementation of **IoC** that involves injecting the dependencies that an object requires into the object at runtime, rather than the object creating them itself. 
 This allows the object to be more loosely coupled with its dependencies and makes it easier to change or swap out those dependencies at runtime.
 
+## Spring MVC
+
+The Spring Web model-view-controller (MVC) framework is designed around a DispatcherServlet that dispatches requests to handlers, 
+with configurable handler mappings, view resolution, locale and theme resolution as well as support for uploading files. 
+The default handler is based on the @Controller and @RequestMapping annotations, offering a wide range of flexible handling methods. 
+With the introduction of Spring 3.0, the @Controller mechanism also allows you to create RESTful Web sites and applications, 
+through the @PathVariable annotation and other features.
+
+- **Model**. The model contains application data. Usually includes POJO classes (Plain Old Java Objects) - plain old Java objects or, in other words, beans.
+- **View**. Used to visualize and display application data using a user interface. Responsible for how the model data will look in the user's browser.
+- **Controller**. The controller is needed to process user requests and call back-end services. It structures the request, creates an appropriate model for further display in the browser.
+- The Dispatcher Servlet is the heart of Spring Web MVC, a fully customizable front controller that coordinates all request processing actions:
+
+![img.png](img.png)
+
