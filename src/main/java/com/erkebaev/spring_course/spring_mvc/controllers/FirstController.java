@@ -36,6 +36,35 @@ public class FirstController {
         return "first/hello";
     }
 
+    // Практическая работа
+    @GetMapping("/calc")
+    public String calc(@RequestParam("a") int a,
+                       @RequestParam("b") int b,
+                       @RequestParam("action") String action,
+                       Model model) {
+        double result;
+        switch (action) {
+            case "multiplication":
+                result = a * b;
+                break;
+            case "division":
+                result = a / (double) b;
+                break;
+            case "subtraction":
+                result = a - b;
+                break;
+            case "addition":
+                result = a + b;
+                break;
+            default:
+                result = 0;
+                break;
+        }
+
+        model.addAttribute("result", result);
+        return "first/calc";
+    }
+
     @GetMapping("/goodbye")
     public String goodByePage() {
         return "first/goodbye";
