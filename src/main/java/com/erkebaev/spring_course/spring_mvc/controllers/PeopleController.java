@@ -26,6 +26,7 @@ public class PeopleController {
         return "people/index";
     }
 
+    // READ
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id,
                        Model model) {
@@ -36,6 +37,7 @@ public class PeopleController {
         return "people/show";
     }
 
+    // CREATE
     @GetMapping("/new")
     public String newPerson(@ModelAttribute("person") Person person) {
         return "people/new";
@@ -44,6 +46,27 @@ public class PeopleController {
     @PostMapping()
     public String create(@ModelAttribute("person") Person person) {
         personDAO.save(person);
+        return "redirect:/people";
+    }
+
+    // UPDATE
+    @GetMapping("/{id}/edit")
+    public String edit(Model model, @PathVariable("id") int id) {
+        model.addAttribute("person", personDAO.show(id));
+        return "people/edit";
+    }
+
+    @PatchMapping("/{id}")
+    public String edit(@ModelAttribute("person") Person person,
+                       @PathVariable("id") int id) {
+        personDAO.update(id, person);
+        return "redirect:/people";
+    }
+
+    // DELETE
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") int id) {
+        personDAO.delete(id);
         return "redirect:/people";
     }
 }
