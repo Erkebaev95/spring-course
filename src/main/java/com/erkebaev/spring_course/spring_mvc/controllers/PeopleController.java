@@ -36,7 +36,7 @@ public class PeopleController {
         // Получим одного человека по id из DAO и
         // передадим на обнаружение в представление
 
-        //model.addAttribute("person", personDAO.show(id));
+        model.addAttribute("person", personDAO.show(id));
         return "people/show";
     }
 
@@ -59,7 +59,7 @@ public class PeopleController {
     // UPDATE
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
-        //model.addAttribute("person", personDAO.show(id));
+        model.addAttribute("person", personDAO.show(id));
         return "people/edit";
     }
 
@@ -70,7 +70,7 @@ public class PeopleController {
         if (bindingResult.hasErrors())
             return "people/edit";
 
-        //ersonDAO.update(id, person);
+        personDAO.update(id, person);
         return "redirect:/people";
     }
 
