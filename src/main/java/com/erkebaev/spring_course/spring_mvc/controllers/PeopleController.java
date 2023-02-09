@@ -20,33 +20,23 @@ public class PeopleController {
         this.personDAO = personDAO;
     }
 
-    @GetMapping
+    @GetMapping()
     public String index(Model model) {
-        // Получим всех людей из DAO и передадим
-        // на обнаружение в представление
         model.addAttribute("people", personDAO.index());
-
         return "people/index";
     }
 
-    // READ
     @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id,
-                       Model model) {
-        // Получим одного человека по id из DAO и
-        // передадим на обнаружение в представление
-
+    public String show(@PathVariable("id") int id, Model model) {
         model.addAttribute("person", personDAO.show(id));
         return "people/show";
     }
 
-    // NEW
     @GetMapping("/new")
     public String newPerson(@ModelAttribute("person") Person person) {
         return "people/new";
     }
 
-    // CREATE
     @PostMapping()
     public String create(@ModelAttribute("person") @Valid Person person,
                          BindingResult bindingResult) {
@@ -57,7 +47,6 @@ public class PeopleController {
         return "redirect:/people";
     }
 
-    // UPDATE
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
         model.addAttribute("person", personDAO.show(id));
@@ -65,9 +54,8 @@ public class PeopleController {
     }
 
     @PatchMapping("/{id}")
-    public String edit(@ModelAttribute("person") @Valid Person person,
-                       BindingResult bindingResult,
-                       @PathVariable("id") int id) {
+    public String update(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult,
+                         @PathVariable("id") int id) {
         if (bindingResult.hasErrors())
             return "people/edit";
 
@@ -75,7 +63,6 @@ public class PeopleController {
         return "redirect:/people";
     }
 
-    // DELETE
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
         personDAO.delete(id);
