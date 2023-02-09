@@ -40,12 +40,13 @@ public class PeopleController {
         return "people/show";
     }
 
-    // CREATE
+    // NEW
     @GetMapping("/new")
     public String newPerson(@ModelAttribute("person") Person person) {
         return "people/new";
     }
 
+    // CREATE
     @PostMapping()
     public String create(@ModelAttribute("person") @Valid Person person,
                          BindingResult bindingResult) {
