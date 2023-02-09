@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class PersonDAO {
@@ -21,26 +22,34 @@ public class PersonDAO {
     }
 
     public List<Person> index() {
-        return jdbcTemplate.query("SELECT * FROM Person", new BeanPropertyRowMapper<>(Person.class));
+        return jdbcTemplate
+                .query("SELECT * FROM person", new BeanPropertyRowMapper<>(Person.class));
+    }
+
+    public Optional<Person> show(String email) {
+        return jdbcTemplate
+                .query("SELECT * FROM person WHERE email=?", new Object[]{email},
+                new BeanPropertyRowMapper<>(Person.class)).stream().findAny();
     }
 
     public Person show(int id) {
-        return jdbcTemplate.query("SELECT * FROM Person WHERE id=?", new Object[]{id}, new BeanPropertyRowMapper<>(Person.class))
+        return jdbcTemplate
+                .query("SELECT * FROM person WHERE id=?", new Object[]{id}, new BeanPropertyRowMapper<>(Person.class))
                 .stream().findAny().orElse(null);
     }
 
     public void save(Person person) {
-        jdbcTemplate.update("INSERT INTO Person(name, age, email) VALUES(?, ?, ?)", person.getName(), person.getAge(),
-                person.getEmail());
+        jdbcTemplate.update("INSERT INTO person(name, age, email, address) VALUES(?, ?, ?, ?)", person.getName(), person.getAge(),
+                person.getEmail(), person.getAddress());
     }
 
     public void update(int id, Person updatedPerson) {
-        jdbcTemplate.update("UPDATE Person SET name=?, age=?, email=? WHERE id=?", updatedPerson.getName(),
-                updatedPerson.getAge(), updatedPerson.getEmail(), id);
+        jdbcTemplate.update("UPDATE person SET name=?, age=?, email=? address=? WHERE id=?", updatedPerson.getName(),
+                updatedPerson.getAge(), updatedPerson.getEmail(), updatedPerson.getAddress(), id);
     }
 
     public void delete(int id) {
-        jdbcTemplate.update("DELETE FROM Person WHERE id=?", id);
+        jdbcTemplate.update("DELETE FROM person WHERE id=?", id);
     }
 
     // Тестируем производительность
@@ -50,7 +59,7 @@ public class PersonDAO {
         long before = System.currentTimeMillis();
 
         for (Person person : people) {
-            jdbcTemplate.update("INSERT INTO Person VALUES(?, ?, ?, ?)", person.getId(), person.getName(), person.getAge(),
+            jdbcTemplate.update("INSERT INTO person VALUES(?, ?, ?, ?)", person.getId(), person.getName(), person.getAge(),
                     person.getEmail());
         }
 
@@ -63,7 +72,7 @@ public class PersonDAO {
 
         long before = System.currentTimeMillis();
 
-        jdbcTemplate.batchUpdate("INSERT INTO Person VALUES(?, ?, ?, ?)",
+        jdbcTemplate.batchUpdate("INSERT INTO person VALUES(?, ?, ?, ?, ?)",
                 new BatchPreparedStatementSetter() {
                     @Override
                     public void setValues(PreparedStatement ps, int i) throws SQLException {
@@ -71,6 +80,7 @@ public class PersonDAO {
                         ps.setString(2, people.get(i).getName());
                         ps.setInt(3, people.get(i).getAge());
                         ps.setString(4, people.get(i).getEmail());
+                        ps.setString(5, people.get(i).getAddress());
                     }
 
                     @Override
@@ -87,7 +97,7 @@ public class PersonDAO {
         List<Person> people = new ArrayList<>();
 
         for (int i = 0; i < 1000; i++)
-            people.add(new Person(i, "Name" + i, 30, "test" + i + "@mail.ru"));
+            people.add(new Person(i, "Name" + i, 30, "test" + i + "@mail.ru", "address"));
 
         return people;
     }
